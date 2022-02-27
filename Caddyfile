@@ -1,6 +1,7 @@
-
 http://hello.localhost {
+
     root * /usr/src/app/
+    encode gzip zstd
 
     @notStatic {
       not path /static/* /media/*
@@ -8,7 +9,8 @@ http://hello.localhost {
 
     reverse_proxy @notStatic django:8000
 
-    file_server
+    file_server /static/*
+    file_server /media/*
 }
 
 http://webmail.localhost {
